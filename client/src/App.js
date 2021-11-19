@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  ApolloClient,
+  ApolloProvider,
+} from "@apollo/client";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Launches from './components/Launches';
 import Launch from './components/Launch';
-import './App.css';
 import logo from './logo.png';
 
 const client = new ApolloClient({
@@ -22,8 +23,10 @@ class App extends Component {
               alt="SpaceX"
               style={{ width: 300, display: 'block', margin: 'auto' }}
             />
-            <Route exact path="/" component={Launches} />
-            <Route exact path="/launch/:flight_number" component={Launch} />
+            <Routes>
+              <Route path="/" element={<Launches />} />
+              <Route path="/launch/:id" element={<Launch />} />
+            </Routes>
           </div>
         </Router>
       </ApolloProvider>
